@@ -1,12 +1,12 @@
 import React from "react"
 import styles from './MovieCard.module.css';
 
-export function MovieCard( movie ){
+export function MovieCard( {movie} ){
     return(
         <div className={styles.cardContainer}>
             <div>
                 <img                    
-                    src={movie.poster_path}
+                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                     alt={movie.original_title}
                     className={styles.image}
                 />                

@@ -31,6 +31,7 @@ export function HomePage() {
         <h1>CARGANDO...</h1>
       )}
       {!isLoading && movies.map((movie)=>{
+        console.log(movie.poster_path)
         return(          
           <MovieCard movie={movie} key={movie.id}/>
         )
