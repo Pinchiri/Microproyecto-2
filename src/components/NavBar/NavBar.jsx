@@ -5,7 +5,7 @@ import { homeURL,
     loginURL,
     profileURL,
     reserveURL,
-    adminURL } from "../../../constants/urls";
+    adminURL } from "../../constants/urls";
 
 // import { useUserContext } from "../../contexts/UserContext";
 import styles from "./Navbar.module.css";
@@ -13,23 +13,23 @@ import styles from "./Navbar.module.css";
 
 export function NavBar() {
   const navigate = useNavigate();
-//   const { user, isLoadingUser } = useUserContext();
+//  const { user, isLoadingUser } = useUserContext();
 
-//   const handleLogout = async () => {
-//     await logout(() => navigate(homeURL));
-//   };
+  const handleLogout = async () => {
+     await logout(() => navigate(homeURL));
+   };
 
   return (
     <nav className={styles.navbar}>
       <ul className={styles.menuList}>
         <li className={`${styles.menuItem} ${styles.menuItemLeft}`}>
           <Link to={homeURL} className={styles.link}>
-            <span>Personajes</span>
+            <span>Home</span>
           </Link>
         </li>
         <li className={`${styles.menuItem} ${styles.menuItemLeft}`}>
-          <Link to={reserveURL} className={styles.link}>
-            <span>Favoritos</span>
+          <Link to={loginURL} className={styles.link}>
+            <span>Login</span>
           </Link>
         </li>
       </ul>
