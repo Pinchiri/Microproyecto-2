@@ -13,11 +13,11 @@ import styles from "./Navbar.module.css";
 
 export function NavBar() {
   const navigate = useNavigate();
-//   const { user, isLoadingUser } = useUserContext();
+//  const { user, isLoadingUser } = useUserContext();
 
-//   const handleLogout = async () => {
-//     await logout(() => navigate(homeURL));
-//   };
+  const handleLogout = async () => {
+     await logout(() => navigate(homeURL));
+   };
 
   return (
     <nav className={styles.navbar}>
@@ -28,8 +28,8 @@ export function NavBar() {
           </Link>
         </li>
         <li className={`${styles.menuItem} ${styles.menuItemLeft}`}>
-          <Link to={registerURL} className={styles.link}>
-            <span>Register</span>
+          <Link to={loginURL} className={styles.link}>
+            <span>Login</span>
           </Link>
         </li>
       </ul>
