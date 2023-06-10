@@ -1,0 +1,26 @@
+.footer{
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  background: #1E1E1E;
+  width: 100%;
+  margin-top: auto;
+}
+
+.textContainer {
+    top: 44px;
+    left: 224px;
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    align-items: center;
+    justify-content: center;
+    width: 1184px;
+    height: 20px;
+    padding: 0px;
+    border-radius: 0px;
+}

@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Routes>
       <Route element = {<Layout />}>
         <Route path = {homeURL} element = {<HomePage />} />
-        <Route path = {reserveURL} element = {<div>Hola</div>} />
+        <Route path = {reserveURL} element = {<h1>Hola</h1>} />
       </Route>
       
     </Routes>
