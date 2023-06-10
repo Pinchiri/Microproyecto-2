@@ -4,12 +4,23 @@
     display: flex;
     flex-direction: row;
     align-items: start;
-    justify-content: space-around;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px;
+    padding: 10px;
     border-radius: 5px;
+    width: 95%;
+    height: auto;
 }
 
 .image{
-    
+    width: 200px;
+    height: auto;
+    margin: 5px;
+    border-radius: 3px;
+}
+
+.rightContainer{
+    margin: auto;
+    margin-top: 10px;
+    width: 50%;
+    text-align: center;
 }
