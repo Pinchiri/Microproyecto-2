@@ -5,7 +5,7 @@ import { homeURL,
     loginURL,
     profileURL,
     reserveURL,
-    adminURL } from "../../../constants/urls";
+    adminURL } from "../../constants/urls";
 
 // import { useUserContext } from "../../contexts/UserContext";
 import styles from "./Navbar.module.css";
@@ -24,12 +24,12 @@ export function NavBar() {
       <ul className={styles.menuList}>
         <li className={`${styles.menuItem} ${styles.menuItemLeft}`}>
           <Link to={homeURL} className={styles.link}>
-            <span>Personajes</span>
+            <span>Home</span>
           </Link>
         </li>
         <li className={`${styles.menuItem} ${styles.menuItemLeft}`}>
-          <Link to={reserveURL} className={styles.link}>
-            <span>Favoritos</span>
+          <Link to={registerURL} className={styles.link}>
+            <span>Register</span>
           </Link>
         </li>
       </ul>
