@@ -1,61 +1,66 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    background: #1E1E1E;
-    padding: 24px 120px;
-  }
-  
-  .navbar .menuList {
-    display: flex;
-    align-items: center;
-    list-style: none;
-  }
-  
-  .navbar .menuList .menuItem {
-    border-radius: 6px;
-    border: 1px solid transparent;
-  }
-  
-  .navbar .menuList .menuItem:hover {
-    border-color: #272b33;
-    background: #23262e;
-  }
-  
-  .navbar .menuList .menuItem.menuItemLeft {
-    margin-right: 8px;
-  }
-  .navbar .menuList .menuItem.menuItemRight {
-    margin-left: 8px;
-  }
-  
-  .navbar .menuList .menuItem .link {
-    display: flex;
-    align-items: center;
-    padding: 8px 16px;
-    text-decoration: none;
-    color: #fff;
-  }
-  
-  .navbar .menuList .menuItem .link.logoutBtn {
-    display: flex;
-    align-items: center;
-    padding: 8px 16px;
-    text-decoration: none;
-    color: red;
-    background: none;
-    outline: none;
-    border: none;
-    font-size: inherit;
-    font-weight: inherit;
-    cursor: pointer;
-  }
-  
-  .navbar .menuList .menuItem .link .userAvatar {
-    content: "";
-    display: block;
-    width: 32px;
-    height: 32px;
-    border-radius: 20px;
-    background: #3c3e44;
-    margin-right: 8px;
-  }
+  top: 20px;
+  left: 20px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  background: #1E1E1E;
+  padding: 24px 120px;
+}
+
+.navbar .menuList {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.navbar .menuList .menuItem {
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+
+.navbar .menuList .menuItem:hover {
+  border-color: #272b33;
+  background: #23262e;
+}
+
+.navbar .menuList .menuItem.menuItemLeft {
+  margin-right: 8px;
+}
+.navbar .menuList .menuItem.menuItemRight {
+  margin-left: 8px;
+}
+
+.navbar .menuList .menuItem .link {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.navbar .menuList .menuItem .link.logoutBtn {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: red;
+  background: none;
+  outline: none;
+  border: none;
+  font-size: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+}
+
+.navbar .menuList .menuItem .link .userAvatar {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-radius: 20px;
+  background: #3c3e44;
+  margin-right: 8px;
+}
