@@ -1,0 +1,8 @@
+.cardContainer{
+    background-color: #FCBF49;
+    color: #1E1E1E;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-around;
+}
