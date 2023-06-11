@@ -43,6 +43,8 @@ export function Register() {
     setData((oldData) => ({
       ...oldData,
       [name]: value,
+      favorites: [],
+      role: "regular",
     }));
   };
 
@@ -57,7 +59,7 @@ export function Register() {
         {/*Name*/}
         <div className={styles.inputContainer}>
           <label htmlFor="name">
-            <span>Full Name</span>
+            <span>Name</span>
           </label>
           <input
             type="text"
@@ -92,20 +94,6 @@ export function Register() {
             name="password"
             id="password"
             placeholder="********"
-            onChange={whenChange}
-          />
-        </div>
-
-        {/*Age*/}
-        <div className={styles.inputContainer}>
-          <label htmlFor="age">
-            <span>Age</span>
-          </label>
-          <input
-            type="number"
-            name="age"
-            id="age"
-            placeholder="Eg. 21"
             onChange={whenChange}
           />
         </div>

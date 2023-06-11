@@ -15,6 +15,17 @@ export function NavBar() {
   const navigate = useNavigate();
   const { user, isLoadingUser } = useUser();
 
+  const displayName = (userName) => {
+    if (user.name.includes(" ")) {
+      userName = userName.split(" ")[0].charAt(0).toUpperCase() + userName.split(" ")[0].slice(1);
+      return userName;
+    } else {
+      userName = userName.charAt(0).toUpperCase() + userName.slice(1);
+      return userName;
+    }
+    
+  }
+
   const handleLogout = async () => {
     await logout(() => navigate(homeURL));
   };
@@ -34,8 +45,8 @@ export function NavBar() {
             <>
               <li className={`${styles.menuItem} ${styles.loggedUser}`}>
                 <Link to={profileURL} className={styles.link}>
-                  <div className={styles.userAvatar} />
-                  <span>{user.name}</span>
+                  <div className={styles.userMarker} />
+                  <span>{displayName(user.name)}</span>
                 </Link>
               </li>
               <li className={`${styles.menuItem} ${styles.menuItemRight}`}>

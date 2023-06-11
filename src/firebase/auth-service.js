@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut, getAdditionalUserInfo } from "@firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut, getAdditionalUserInfo, GoogleAuthProvider } from "@firebase/auth";
 import { auth, googleProvider } from "./config";
 import { createUser } from "./users-service";
 
@@ -15,6 +15,7 @@ export const googleLogin = async ({ onSuccess, onFail }) => {
           email,
           name: displayName,
           age: "",
+          favorites: [],
         });
       }
   
@@ -82,7 +83,7 @@ export const googleLogin = async ({ onSuccess, onFail }) => {
   }) => {
     try {
       const { email, password } = userData;
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email.toLowerCase(), password);
   
       if (onSuccess) {
         onSuccess();

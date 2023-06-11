@@ -49,7 +49,7 @@ export function Login() {
             Log in to make a reservation
           </p>
   
-          {/* EMAIL FIELD */}
+          {/*Email*/}
           <div className={styles.inputContainer}>
             <label htmlFor="email">
               <span>Email</span>
@@ -63,7 +63,7 @@ export function Login() {
             />
           </div>
   
-          {/* PASSWORD FIELD */}
+          {/*Password*/}
           <div className={styles.inputContainer}>
             <label htmlFor="password">
               <span>Password</span>
