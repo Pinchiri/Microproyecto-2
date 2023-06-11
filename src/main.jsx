@@ -34,7 +34,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </PrivateRoute>
           
         } />
-        <Route path = 'movies/:movieId' element = {<MovieDetails />} />
+        <Route path = '/movies/:movieId' element = {<MovieDetails />} />
       </Route>
            
     </Routes>

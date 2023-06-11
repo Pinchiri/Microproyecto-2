@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { fetchMovies } from '../utils/movie-api';
 import { fetchNewMovies } from '../utils/movie-api';
 import { fetchGenres } from '../utils/movie-api';
-import { fetchInfo } from '../utils/movie-api';
 
 export function useMovies(){
     const [genres, setGenres] = useState([]);
@@ -30,19 +29,14 @@ export function useMovies(){
         setGenres(data.genres);
     }
     
-    const getInfo = async (id) =>{
-        const{data} = await fetchInfo(id)
-    }
 
     return{
         movies,
         genres,
-        info,
         newMovies,
         isLoading,
         getMovies,
         getNewMovies,
-        getInfo,
         getGenres
     }
 }
