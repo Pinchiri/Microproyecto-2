@@ -1,31 +1,10 @@
 import React, { useEffect } from 'react'
-import { useState } from 'react'
 import{ MovieCard } from '../../components/MovieCard/MovieCard'
-import { fetchMovies } from '../../utils/movie-api'
-import { fetchNewMovies } from '../../utils/movie-api'
+import { useMovies } from '../../hooks/useMovie'
 import styles from './HomePage.module.css';
 
 export function HomePage() {
-  const [movies, setMovies] = useState([])  
-  const [newMovies, setNewMovies] = useState([])
-  const [isLoading, setLoading] = useState(false);
-
-
-  const getMovies = async () =>{
-    setLoading(true);
-    const {data} = await fetchMovies()
-    setMovies(data.results);
-    setLoading(false);
-    console.log(data.results);
-  }
-
-  const getNewMovies = async () =>{
-    setLoading(true);
-    const {data} = await fetchNewMovies()
-    setNewMovies(data.results);
-    setLoading(false);
-    console.log(data.results);
-  }
+  const { movies, newMovies, isLoading, getMovies, getNewMovies } = useMovies(); 
 
   useEffect(()=>{
     getMovies()
