@@ -63,21 +63,38 @@
     align-items: center;
     padding: 8px 16px;
     text-decoration: none;
-    color: red;
+
     background: none;
     outline: none;
     border: none;
     font-size: inherit;
-    font-weight: inherit;
+    font-weight: 600;
     cursor: pointer;
   }
   
   .navbar .menuList .menuItem .link .userAvatar {
     content: "";
     display: block;
-    width: 32px;
+    width: 5px;
     height: 32px;
     border-radius: 20px;
     background: #3c3e44;
     margin-right: 8px;
+  }
+
+  .navbar .menuList .menuItem.loggedUser {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    text-decoration: none;
+    
+    
+    font-size: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .navbar .menuList .menuItem.loggedUser:hover {
+    transform: scale(1.05);
+    background: #868686;
   }
