@@ -9,44 +9,44 @@ import {
  } from "../../firebase/auth-service";
 
 export function Login() {
-    const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-      email: "",
-      password: "",
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const onSuccess = () => {
+    navigate(homeURL);
+  };
+
+  const onFail = (_error) => {
+    console.log("LOGIN FAILED, Try Again");
+  };
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+    await emailPasswordLogin({ userData: formData, onSuccess, onFail });
+  };
+
+  const onChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData((oldData) => ({ ...oldData, [name]: value }));
+  };
+
+  const handleGoogleClick = async () => {
+    await googleLogin({
+      onSuccess: () => navigate(homeURL),
     });
-  
-    const onSuccess = () => {
-      navigate(homeURL);
-    };
-  
-    const onFail = (_error) => {
-      console.log("LOGIN FAILED, Try Again");
-    };
-  
-    const onSubmit = async (event) => {
-      event.preventDefault();
-  
-      await emailPasswordLogin({ userData: formData, onSuccess, onFail });
-    };
-  
-    const onChange = (event) => {
-      const { name, value } = event.target;
-  
-      setFormData((oldData) => ({ ...oldData, [name]: value }));
-    };
-  
-    const handleGoogleClick = async () => {
-      await googleLogin({
-        onSuccess: () => navigate(homeURL),
-      });
-    };
+  };
   
     return (
       <div className={styles.container}>
         <form className={styles.form} onSubmit={onSubmit}>
-          <h1 className={styles.title}>Welcome</h1>
+          <h1 className={styles.title}>Reserve from anywhere</h1>
           <p className={styles.welcomeTxt}>
-            Log in to reserve a seat
+            Log in to make a reservation
           </p>
   
           {/* EMAIL FIELD */}

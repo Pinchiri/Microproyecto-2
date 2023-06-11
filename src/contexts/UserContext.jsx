@@ -1,33 +1,43 @@
-import { onAuthStateChanged } from "@firebase/auth";
-import React, { useContext, createContext, useEffect, useState } from "react";
-import { auth } from "../firebase/firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
+import React, { useContext, useEffect, useState } from "react";
+import { auth } from "../firebase/config";
+import { getUserProfile } from "../firebase/users-service";
 
-export const UserContext = createContext(null);
 
-export function UserContextProvider({ children }){
-    const [user, setUser ] = useState(null);
+export const UserContext = React.createContext();
 
-    useEffect(() => {
-        onAuthStateChanged(auth, (firebaseUser) => {
-            if(firebaseUser) {
-                setUser({
-                    id: firebaseUser.id,
-                    email: firebaseUser.email,
-                    name: firebaseUser.displayName,
-                })
-            }
-        } )
-    }, [])
-    return <UserContext.Provider value = {{
-        user: {
-            name: "Rolando",
-            email: "rolando4693@gmail.com",
-            age: 21,
-        },
-    }}>{children}
-    </UserContext.Provider>        
+export function UserContextProvider({ children }) {
+  const [user, setUser] = useState(null);
+  const [isLoadingUser, setIsLoadingUser] = useState(true);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, async (firebaseUser) => {
+      setIsLoadingUser(true);
+      if (firebaseUser && !user) {
+        const userProfile = await getUserProfile(firebaseUser.email);
+        setUser(userProfile);
+      } else {
+        setUser(null);
+      }
+
+      setIsLoadingUser(false);
+    });
+  }, []);
+
+  return (
+    <UserContext.Provider
+      value={{
+        user,
+        setUser,
+        isLoadingUser,
+        setIsLoadingUser,
+      }}
+    >
+      {children}
+    </UserContext.Provider>
+  );
 }
 
 export function useUser() {
-    return useContext(userContext);
+    return useContext(UserContext);
 }

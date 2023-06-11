@@ -1,6 +1,6 @@
 import React, {useEffect} from "react"
 import styles from './MovieCard.module.css';
-import { useMovies } from '../../hooks/useMovie';
+import { useMovies } from '../../hooks/useMovie'
 
 export function MovieCard( {movie}){
     const {genres, getGenres} = useMovies();

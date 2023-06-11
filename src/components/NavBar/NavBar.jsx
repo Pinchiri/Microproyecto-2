@@ -7,17 +7,17 @@ import { homeURL,
     reserveURL,
     adminURL } from "../../constants/urls";
 
-// import { useUserContext } from "../../contexts/UserContext";
 import styles from "./Navbar.module.css";
-// import { logout } from "../../firebase/auth";
+import { logout } from "../../firebase/auth-service";
+import { useUser } from "../../contexts/UserContext";
 
 export function NavBar() {
   const navigate = useNavigate();
-//  const { user, isLoadingUser } = useUserContext();
+  const { user, isLoadingUser } = useUser();
 
   const handleLogout = async () => {
-     await logout(() => navigate(homeURL));
-   };
+    await logout(() => navigate(homeURL));
+  };
 
   return (
     <nav className={styles.navbar}>
@@ -27,18 +27,12 @@ export function NavBar() {
             <span>Home</span>
           </Link>
         </li>
-        <li className={`${styles.menuItem} ${styles.menuItemLeft}`}>
-          <Link to={loginURL} className={styles.link}>
-            <span>Login</span>
-          </Link>
-        </li>
       </ul>
 
-      {/* {!isLoadingUser && (
         <ul className={styles.menuList}>
           {!!user ? (
             <>
-              <li className={`${styles.menuItem} ${styles.menuItemRight}`}>
+              <li className={`${styles.menuItem} ${styles.loggedUser}`}>
                 <Link to={profileURL} className={styles.link}>
                   <div className={styles.userAvatar} />
                   <span>{user.name}</span>
@@ -50,7 +44,7 @@ export function NavBar() {
                   className={`${styles.link} ${styles.logoutBtn}`}
                   onClick={handleLogout}
                 >
-                  <span>Salir</span>
+                  <span>LOGOUT</span>
                 </button>
               </li>
             </>
@@ -58,18 +52,17 @@ export function NavBar() {
             <>
               <li className={`${styles.menuItem} ${styles.menuItemRight}`}>
                 <Link to={loginURL} className={styles.link}>
-                  <span>Iniciar sesión</span>
+                  <span>LOG IN</span>
                 </Link>
               </li>
               <li className={`${styles.menuItem} ${styles.menuItemRight}`}>
                 <Link to={registerURL} className={styles.link}>
-                  <span>Registro</span>
+                  <span>SIGN UP</span>
                 </Link>
               </li>
             </>
           )}
         </ul>
-      )} */}
     </nav>
   );
 }
