@@ -2,14 +2,36 @@
     background-color: #FCBF49;
     color: #1E1E1E;
     display: flex;
-    flex-direction: row;
-    align-items: start;
-    justify-content: space-around;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 10px;
     border-radius: 5px;
+    width: 240px;
+    height: auto;
+    overflow:hidden;
 }
 
 .image{
-    
+    width: 240px;
+    height: auto;
+    margin: 5px;
+    border-radius: 3px;
+}
+
+.rightContainer{
+    margin: auto;
+    margin-top: 0px;
+    text-align: center;
+}
+
+.big{
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.medium{
+    font-size: 15px;
+    margin-top: 5px;
 }

@@ -13,11 +13,14 @@ export function MovieCard( {movie} ){
             </div>
             <div className={styles.rightContainer}>
                 <div className={styles.infoContainer}>
-                    <h2>
+                    <p className={styles.big}>
                         {movie.original_title}
-                    </h2>
+                    </p>
+                    <p className={styles.medium}>
+                        {`Lenguaje: ${movie.original_language}`}
+                    </p>
                     <h3>
-                        {movie.original_language}
+
                     </h3>
                 </div>
             </div>

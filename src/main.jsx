@@ -18,7 +18,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path = {homeURL} element = {<HomePage />} />
         <Route path = {registerURL} element = {<Register />} />
         <Route path = {loginURL} element = {<Login />} />
-        <Route path = {reserveURL} element = {<h1>RESERVE</h1>} />
+        <Route path = {reserveURL} element = {
+          <PrivateRoute>
+            <h1>RESERVE</h1>
+          </PrivateRoute>
+        } />
         <Route path = {profileURL} element = {
           <PrivateRoute>
             <h1>PROFILE</h1>

@@ -7,9 +7,9 @@
     flex-direction: row;
     justify-content: space-between;
     background: #1E1E1E;
-
     font-weight: 500;
-    width: 100%;
+
+    overflow:hidden;
   }
   
   .navbar .menuList {
