@@ -53,26 +53,13 @@ export function Reserve() {
             {/*Name*/}
             <div className={styles.inputContainer}>
                 <label htmlFor="name">
-                <span>Name</span>
+                <span>Full Name</span>
                 </label>
                 <input
                 type="text"
                 name="name"
                 id="name"
                 placeholder="Eg. Rolando"
-                onChange={whenChange}
-                />
-            </div>
-
-            <div className={styles.inputContainer}>
-                <label htmlFor="lastName">
-                <span>Last Name</span>
-                </label>
-                <input
-                type="text"
-                name="lastName"
-                id="lastName"
-                placeholder="Eg. Sorrentino"
                 onChange={whenChange}
                 />
             </div>
@@ -127,7 +114,7 @@ export function Reserve() {
             >
                 GET TICKETS
             </button>
-            <Link to={loginURL} className={styles.loginRedirect}>
+            <Link to={homeURL} className={styles.loginRedirect}>
                 Watch the movies on {" "}
                 <span className={styles.redirectLink}>billboard</span>
             </Link>

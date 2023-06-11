@@ -59,7 +59,7 @@ export function Register() {
         {/*Name*/}
         <div className={styles.inputContainer}>
           <label htmlFor="name">
-            <span>Name</span>
+            <span>Full Name</span>
           </label>
           <input
             type="text"

@@ -40,6 +40,7 @@ export function NavBar() {
         </li>
       </ul>
 
+      {!isLoadingUser && (
         <ul className={styles.menuList}>
           {!!user ? (
             <>
@@ -74,6 +75,7 @@ export function NavBar() {
             </>
           )}
         </ul>
+        )}
     </nav>
   );
 }
