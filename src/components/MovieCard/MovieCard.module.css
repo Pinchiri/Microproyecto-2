@@ -39,6 +39,7 @@
 .link{
     text-decoration: none;
     color:#1E1E1E;
+    cursor: pointer;
 }
 
 .link:hover{

@@ -15,4 +15,5 @@
     grid-template-rows: auto;
     align-self: center;
     overflow:hidden;
+    margin-left: 10px;
 }
