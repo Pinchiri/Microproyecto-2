@@ -17,8 +17,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path = {homeURL} element = {<HomePage />} />
         <Route path = {registerURL} element = {<Register />} />
         <Route path = {loginURL} element = {<Login />} />
-      </Route>
-      
+        <Route path = 'movies/:movieId' element = {<h1></h1>}
+        />
+      </Route>      
     </Routes>
     </BrowserRouter>
   </React.StrictMode>,

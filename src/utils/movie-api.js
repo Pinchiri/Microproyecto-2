@@ -9,5 +9,9 @@ export async function fetchNewMovies(){
 }
 
 export async function fetchGenres(){
-    return axios.get('https://api.themoviedb.org/37genre/movie/list?api_key=28f882571b90834cf3bf26f959b6b90f')
+    return axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=28f882571b90834cf3bf26f959b6b90f')
+}
+
+export async function fetchInfo(id){
+    return axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=28f882571b90834cf3bf26f959b6b90f`)
 }
