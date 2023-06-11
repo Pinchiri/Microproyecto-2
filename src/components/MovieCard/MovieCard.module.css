@@ -36,6 +36,15 @@
     margin-top: 5px;
 }
 
+.link{
+    text-decoration: none;
+    color:#1E1E1E;
+}
+
+.link:hover{
+    color:#a36e03;
+}
+
 .medium{
     font-size: 15px;
     margin-top: 5px;

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-
 import { fetchInfo } from "../../utils/movie-api";
-//import defaultImg from "./../../imgs/defaultImg.jpg";
+import { fetchCredits } from "../../utils/movie-api";
 import styles from "./MovieDetails.module.css"
 
 
 export function MovieDetails() {
 
     const [movie, setMovie] = useState(null);
+    const [credits, setCredits] = useState(null);
     const { movieId } = useParams();
     const [isLoading, setLoading] = useState(false)
 
@@ -16,12 +16,22 @@ export function MovieDetails() {
         setLoading(true)
         const response = await fetchInfo(movieId);
         setMovie(response.data)
+        console.log(response.data)
+        setLoading(false)
+    }
+
+    const getCredits = async (movieId) => {
+        setLoading(true)
+        const response = await fetchCredits(movieId);
+        setCredits(response.data)
+        console.log(response.data)
         setLoading(false)
     }
 
     useEffect(() => {
         if (!isLoading && movieId) {
             getSingleMovie(movieId)
+            getCredits(movieId)
         }
     }, [])
 
@@ -33,53 +43,61 @@ export function MovieDetails() {
         );
     }
 
-    if (!isLoading && movie) {
+    if (!isLoading && movie && credits) {
         return(
             <div className={styles.container}>
-                <div className="my-5">
+                <div>
                     <img src={movie.poster_path != null ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : null} className={styles.image} alt=""/>
+                    {movie.status == "Released" ? (
+                        <p>Placeholder para el botón</p>
+                    ):(
+                        <div className={styles.releases}>
+                            <h5>PRÓXIMAMENTE!!</h5>
+                            <h5>Fecha de Estreno: {movie.release_date}</h5>
+                        </div>
+                    )}
+                    
                 </div>
-
                 <div className={styles.infoContainer}>
-                    <div className="mt-5">
+                    <div>
                         <h1 className={styles.original_title}>{movie.original_title}</h1>
                         <p className={styles.overview}>{movie.overview}</p>
                     </div>
 
                     <div className={styles.otherInfo}>
-                        <div className="p-4">
-                            <h5 className="text-light mb-3">Genres: {movie.genres.map(
-                                    (genre) => {return (`${genre.name}, `)}
+                        <div>
+                            <h5>
+                                Géneros: {movie.genres.map(
+                                    (genre) => {return (`${genre.name} `)}
                                 )}
                             </h5>
-                            <h5 className="text-light my-3">Original Language: {movie.original_language}</h5>
-                            <h5 className="text-light mt-3">Presupuesto: {movie.budget}</h5>
-                        </div>
-                        <div className="p-4">
-                            <h5 className="text-light mb-3">Rating: {movie.popularity}</h5>
-                            <h5 className="text-light my-3">Release date: {movie.release_date}</h5>
-                            <h5 className="text-light mt-3">Status: {movie.status}</h5>
-                        </div>
+                            <h5>
+                                Lenguajes: {movie.spoken_languages.map(
+                                (spoken_languages) => {return (`${spoken_languages.english_name} `)}
+                            )}</h5>
+                            <h5>
+                                Duración: {movie.runtime} minutos
+                            </h5>
+                        </div>                        
                     </div>
 
-                    <div className="d-flex justify-content-center">
-                        <div className="mx-3 mb-5">
-                            <h5 className="text-light">Producers: </h5>
-                            <ul className="text-light mt-3">
-                                {movie.production_companies.map((company) => {
-                                        return(
-                                            <li className={`my-2 ${styles.listLook}`}>{company.name}</li>
-                                        );
+                    <div>
+                        <div>
+                            <h5>Actores: </h5>
+                            <ul className={styles.actorList}>
+                                {credits.cast.map((actor) => {
+                                    if(actor.known_for_department == "Acting"){                                                
+                                            return(                                            
+                                                <li>{actor.name}</li>
+                                            );
+                                        }                                        
                                     })
                                 }
                             </ul>
                         </div>  
-                    </div>
-                    
-                   
-                    
+                    </div>    
                 </div>
             </div>
-    );
+        );
     }
 }

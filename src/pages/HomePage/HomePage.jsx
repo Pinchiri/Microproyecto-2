@@ -4,7 +4,7 @@ import { useMovies } from '../../hooks/useMovie'
 import styles from './HomePage.module.css';
 
 export function HomePage() {
-  const { movies, newMovies, isLoading, getMovies, getNewMovies } = useMovies(); 
+  const { movies,newMovies, isLoading, getMovies, getNewMovies} = useMovies(); 
 
   useEffect(()=>{
     getMovies()

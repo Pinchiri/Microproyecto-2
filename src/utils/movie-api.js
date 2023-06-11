@@ -15,3 +15,7 @@ export async function fetchGenres(){
 export async function fetchInfo(id){
     return axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=28f882571b90834cf3bf26f959b6b90f`)
 }
+
+export async function fetchCredits(id){
+    return axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=28f882571b90834cf3bf26f959b6b90f`)
+}

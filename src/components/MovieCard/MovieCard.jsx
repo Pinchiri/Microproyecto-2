@@ -1,6 +1,7 @@
 import React, {useEffect} from "react"
 import styles from './MovieCard.module.css';
 import { useMovies } from '../../hooks/useMovie'
+import { Link } from "react-router-dom";
 
 export function MovieCard( {movie}){
     const {genres, getGenres} = useMovies();
@@ -8,10 +9,7 @@ export function MovieCard( {movie}){
     useEffect(()=>{
         getGenres()
       }, [])
-    
-      
-    console.log(movie);
-    console.log(genres);  
+          
     let generos = "";
 
     if(genres.length!=0){        
@@ -36,7 +34,9 @@ export function MovieCard( {movie}){
             <div className={styles.rightContainer}>
                 <div className={styles.infoContainer}>
                     <p className={styles.big}>
-                        {movie.original_title}
+                        <Link to={`/movies/${movie.id}`} className={styles.link}>                            
+                            {movie.original_title}
+                        </Link>
                     </p>
                     <p className={styles.medium}>
                         {`Lenguaje: ${movie.original_language}`}
