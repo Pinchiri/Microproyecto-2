@@ -1,0 +1,23 @@
+.image {
+    height: 500px;
+    border-radius: 10px;
+}
+
+.container {
+    height: calc(100vh - 66px);
+    display: flex;
+}
+
+.overview {
+    color: white;
+    font-size: 18px;
+}
+
+.otherInfo {
+    background-color: #1e1e1e;
+    border-radius: 20px;
+}
+
+.listLook {
+    font-size: 1.25rem;
+}

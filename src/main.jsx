@@ -9,6 +9,7 @@ import { adminURL, homeURL, loginURL, profileURL, registerURL, reserveURL } from
 import { Login } from './pages/Login/Login'
 import { Register } from './pages/Register/Register'
 import { PrivateRoute } from './components/PrivateRoute/PrivateRoute.jsx'
+import { MovieDetails } from './pages/MovieDetails/MovieDetails'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -34,7 +35,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </PrivateRoute>
           
         } />
-        <Route path = 'movies/:movieId' element = {<h1></h1>} />
+        <Route path = 'movies/:movieId' element = {<MovieDetails />} />
       </Route>
            
     </Routes>
