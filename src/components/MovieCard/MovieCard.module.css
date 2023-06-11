@@ -10,6 +10,7 @@
     width: 240px;
     height: auto;
     overflow:hidden;
+    align-content: space-around;
 }
 
 .image{
@@ -23,6 +24,10 @@
     margin: auto;
     margin-top: 0px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: stretch;
 }
 
 .big{
@@ -34,4 +39,10 @@
 .medium{
     font-size: 15px;
     margin-top: 5px;
+}
+
+.medium2{
+    font-size: 15px;
+    margin-top: 5px;
+    font-weight: bold;
 }

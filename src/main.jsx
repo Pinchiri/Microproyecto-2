@@ -32,9 +32,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <PrivateRoute>
             <h1>ADMIN</h1>
           </PrivateRoute>
+          
         } />
+        <Route path = 'movies/:movieId' element = {<h1></h1>} />
       </Route>
-      
+           
     </Routes>
     </BrowserRouter>
   </React.StrictMode>,
