@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import{ MovieCard } from '../../components/MovieCard/MovieCard'
+import { Carousel } from '../../components/Carousel/Carousel';
 import { useMovies } from '../../hooks/useMovie'
 import styles from './HomePage.module.css';
 
@@ -13,6 +14,7 @@ export function HomePage() {
 
   return (
     <div>
+      <Carousel/>
       <div className={styles.titleContainer}>      
         <h1 className={styles.title}>EN CARTELERA</h1>  
       </div>  
