@@ -2,52 +2,109 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithP
 import { auth, googleProvider } from "./config";
 import { createUser } from "./users-service";
 
-export const googleLogin = async () => {
+// HANDLE SING IN OR REGISTER USING GOOGLE PROVIDER
+export const googleLogin = async ({ onSuccess, onFail }) => {
     try {
-       const result = await signInWithPopup(auth, googleProvider);
-
-       const { isNewUser } = getAdditionalUserInfo(result);
-
-       if (isNewUser) {
-            await createUser(result.user.uid, {
-                email: result.user.email,
-                name: result.user.displayName,
-                age: 0,
-                role: "regular",
-                favorites: [],
-            })
-       }
-
+      const result = await signInWithPopup(auth, googleProvider);
+      const { isNewUser } = getAdditionalUserInfo(result);
+  
+      if (isNewUser) {
+        const { uid, email, displayName } = result.user;
+        await createUser({
+          uid,
+          email,
+          name: displayName,
+          age: "",
+        });
+      }
+  
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (error) {
-        console.error({error});
+      const errorCode = error?.code;
+      const errorMessage = error?.message;
+      // The email of the user's account used.
+      const email = error?.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+  
+      if (onFail) {
+        onFail();
+      }
+  
+      console.error("FAILED SIGN IN WITH GOOGLE", {
+        errorCode,
+        errorMessage,
+        email,
+        credential,
+      });
     }
-};
-
-export const emailPasswordRegister = async (email, password, extraData) => {
+  };
+  
+  // HANDLE REGISTER WITH EMAIL AND PASSWORD
+  export const emailPasswordRegister = async ({
+    userData,
+    onSuccess,
+    onFail,
+  }) => {
     try {
-        const result = await createUserWithEmailAndPassword(auth, email, password);
-        await createUser(result.user.uid, { 
-            email, 
-            ...extraData});
+      const { email, password, ...restData } = userData;
+      const firebaseResult = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+  
+      await createUser({
+        ...restData,
+        email,
+        uid: firebaseResult.user.uid,
+      });
+  
+      // SUCCESS CALLBACK
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (error) {
-        console.error({error});
+      console.error("REGISTER FAILED", { error });
+      if (onFail) {
+        onFail();
+      }
     }
-};
-
-
-export const emailPasswordLogin = async (email, password) => {
+  };
+  
+  // HANDLE LOGIN WITH EMAIL AND PASSWORD
+  export const emailPasswordLogin = async ({
+    userData,
+    onSuccess,
+    onFail,
+  }) => {
     try {
-        const result = await signInWithEmailAndPassword(auth, email, password);
-
+      const { email, password } = userData;
+      await signInWithEmailAndPassword(auth, email, password);
+  
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (error) {
-        console.error({ error });
+      console.error("LOGIN FAILED", { error });
+  
+      if (onFail) {
+        onFail();
+      }
     }
-};
-
-export const logout = async () => {
+  };
+  
+  // HANDLE USER SIGN OUT
+  export const logout = async (callback) => {
     try {
-        await signOut(auth);
+      await signOut(auth);
+  
+      if (callback) {
+        callback();
+      }
     } catch (error) {
-        console.error({error});
+      console.error("SIGN OUT FAILED", { error });
     }
-};
+  };

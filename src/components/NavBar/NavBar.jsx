@@ -8,16 +8,16 @@ import { homeURL,
     adminURL } from "../../constants/urls";
 
 import styles from "./Navbar.module.css";
-import { useUser } from "../../contexts/UserContext";
 import { logout } from "../../firebase/auth-service";
+import { useUser } from "../../contexts/UserContext";
 
 export function NavBar() {
   const navigate = useNavigate();
   const { user, isLoadingUser } = useUser();
 
   const handleLogout = async () => {
-     await logout(() => navigate(homeURL));
-   };
+    await logout(() => navigate(homeURL));
+  };
 
   return (
     <nav className={styles.navbar}>
@@ -28,12 +28,11 @@ export function NavBar() {
           </Link>
         </li>
       </ul>
-      
-      {!isLoadingUser && (
+
         <ul className={styles.menuList}>
           {!!user ? (
             <>
-              <li className={`${styles.menuItem} ${styles.menuItemRight}`}>
+              <li className={`${styles.menuItem} ${styles.loggedUser}`}>
                 <Link to={profileURL} className={styles.link}>
                   <div className={styles.userAvatar} />
                   <span>{user.name}</span>
@@ -45,7 +44,7 @@ export function NavBar() {
                   className={`${styles.link} ${styles.logoutBtn}`}
                   onClick={handleLogout}
                 >
-                  <span>Salir</span>
+                  <span>LOGOUT</span>
                 </button>
               </li>
             </>
@@ -64,7 +63,6 @@ export function NavBar() {
             </>
           )}
         </ul>
-      )}
     </nav>
   );
 }
