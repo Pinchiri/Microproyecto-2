@@ -7,7 +7,8 @@
     flex-direction: row;
     justify-content: space-between;
     background: #1E1E1E;
-    padding: 24px 120px;
+
+    font-weight: 500;
     width: 100%;
   }
   
@@ -22,17 +23,27 @@
     border: 1px solid transparent;
   }
   
-  .navbar .menuList .menuItem:hover {
-    border-color: #272b33;
-    background: #23262e;
+  .navbar .menuList .menuItem.menuItemLeft:hover {
+    background: #868686;
+    transform: scale(1.10);
+  }
+
+  .navbar .menuList .menuItem.menuItemRight:hover {
+    background: #f7a90e;
+    transform: scale(1.10);
   }
   
   .navbar .menuList .menuItem.menuItemLeft {
     margin-right: 8px;
+    
   }
   .navbar .menuList .menuItem.menuItemRight {
-    margin-left: 8px;
+
+    background-color: #FCBF49;
+    margin-right: 10px;
+    
   }
+
   
   .navbar .menuList .menuItem .link {
     display: flex;
@@ -40,6 +51,11 @@
     padding: 8px 16px;
     text-decoration: none;
     color: #fff;
+  }
+
+  .navbar .menuList .menuItem.menuItemRight .link {
+    color: #1E1E1E;
+    font-weight: 600;
   }
   
   .navbar .menuList .menuItem .link.logoutBtn {

@@ -44,9 +44,9 @@ export function Login() {
     return (
       <div className={styles.container}>
         <form className={styles.form} onSubmit={onSubmit}>
-          <h1 className={styles.title}>Welcome</h1>
+          <h1 className={styles.title}>Reserve from anywhere</h1>
           <p className={styles.welcomeTxt}>
-            Log in to reserve a seat
+            Log in to make a reservation
           </p>
   
           {/* EMAIL FIELD */}

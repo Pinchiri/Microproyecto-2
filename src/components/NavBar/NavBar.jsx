@@ -7,13 +7,13 @@ import { homeURL,
     reserveURL,
     adminURL } from "../../constants/urls";
 
-// import { useUserContext } from "../../contexts/UserContext";
 import styles from "./Navbar.module.css";
-// import { logout } from "../../firebase/auth";
+import { useUser } from "../../contexts/UserContext";
+import { logout } from "../../firebase/auth-service";
 
 export function NavBar() {
   const navigate = useNavigate();
-//  const { user, isLoadingUser } = useUserContext();
+  const { user, isLoadingUser } = useUser();
 
   const handleLogout = async () => {
      await logout(() => navigate(homeURL));
@@ -27,14 +27,9 @@ export function NavBar() {
             <span>Home</span>
           </Link>
         </li>
-        <li className={`${styles.menuItem} ${styles.menuItemLeft}`}>
-          <Link to={loginURL} className={styles.link}>
-            <span>Login</span>
-          </Link>
-        </li>
       </ul>
-
-      {/* {!isLoadingUser && (
+      
+      {!isLoadingUser && (
         <ul className={styles.menuList}>
           {!!user ? (
             <>
@@ -58,18 +53,18 @@ export function NavBar() {
             <>
               <li className={`${styles.menuItem} ${styles.menuItemRight}`}>
                 <Link to={loginURL} className={styles.link}>
-                  <span>Iniciar sesión</span>
+                  <span>LOG IN</span>
                 </Link>
               </li>
               <li className={`${styles.menuItem} ${styles.menuItemRight}`}>
                 <Link to={registerURL} className={styles.link}>
-                  <span>Registro</span>
+                  <span>SIGN UP</span>
                 </Link>
               </li>
             </>
           )}
         </ul>
-      )} */}
+      )}
     </nav>
   );
 }

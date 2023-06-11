@@ -24,7 +24,7 @@ export function HomePage() {
   return (
     <div>
     <div className={styles.titleContainer}>      
-      <h1 className={styles.title}>HomePage</h1>  
+      <h1 className={styles.title}></h1>  
     </div>  
     <div className={styles.movies}>
       {isLoading && (
