@@ -5,19 +5,20 @@ import { GoogleAuthProvider, getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAGhz-d-MvNEk4bpVDzQyiKdz_jtpBpixs",
-  authDomain: "microproyecto-2-si.firebaseapp.com",
-  projectId: "microproyecto-2-si",
-  storageBucket: "microproyecto-2-si.appspot.com",
-  messagingSenderId: "11949251159",
-  appId: "1:11949251159:web:870c7d7b64cbc8f851e112",
-  measurementId: "G-2CGXNSWXNE"
+  apiKey: `${import.meta.env.VITE_APP_APIKEY}`,
+  authDomain: `${import.meta.env.VITE_APP_AUTHDOMAIN}`,
+  projectId: `${import.meta.env.VITE_APP_PROJECTID}`,
+  storageBucket: `${import.meta.env.VITE_APP_STORAGEBUCKET}`,
+  messagingSenderId: `${import.meta.env.VITE_APP_MESSAGINGSENDERID}`,
+  appId: `${import.meta.env.VITE_APP_APPID}`,  
+
 };
 
 // Initialize Firebase
