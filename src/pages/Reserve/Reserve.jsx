@@ -16,11 +16,11 @@ export function Reserve() {
     const { movieId } = useParams();
     const { user, isLoadingUser } = useUser();
     const [selectedSeats, setSelectedSeats] = useState([]);
-    let total = 0;
 
     const [isLoading, setLoading] = useState(false);
     const [movie, setMovie] = useState(null);
 
+    const [total, setTotal] = useState(0);
     
     const getSingleMovie = async (movieId) => {
         setLoading(true)
@@ -65,26 +65,25 @@ export function Reserve() {
   
     const whenChange = (event) => {
       const {name, value} = event.target;
+
       setData((oldData) => ({
         ...oldData,
         [name]: value,
       }));
     };
 
-    const calculateCosts = () => {
-        
+    function calculateCosts() {
         for (let i = 0; i < selectedSeats.length; i++) {
-            const ticketCost = Math.floor(Math.random() * 4001) + 1000; // Genera un número aleatorio entre 1000 y 5000
-            total += ticketCost;
-          }
-        
-        return total;
+            const random = Math.floor(Math.random() * 4001) + 1000; // Genera un número aleatorio entre 1000 y 5000
+            setTotal(total + random);
+        }
     }
 
     useEffect(() => {
         if (!isLoading && movieId) {
             getSingleMovie(movieId) 
         }
+      
     }, [])
 
   return (
@@ -141,7 +140,9 @@ export function Reserve() {
             <div className={styles.seatsGrid}>
                 <SeatsGrid handleSelected = {handleSelectedSeats} onChange={whenChange} />
             </div>
-
+            {/* <p className={styles.welcomeTxt} onChange={whenChange}>
+                The tickets total price is ${total}
+            </p> */}
             <button
                 type="submit"
                 className={styles.submitBtn}

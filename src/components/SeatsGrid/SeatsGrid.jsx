@@ -19,6 +19,7 @@ export function SeatsGrid({ handleSelected }) {
         }
       };
     
+    
 
     const isSelected = (seat) => {
         return selected.includes(seat);
