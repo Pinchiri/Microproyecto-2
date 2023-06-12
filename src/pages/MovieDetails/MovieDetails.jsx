@@ -49,7 +49,12 @@ export function MovieDetails() {
                 <div>
                     <img src={movie.poster_path != null ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : null} className={styles.image} alt=""/>
                     {movie.status == "Released" ? (
-                        <p>Placeholder para el botón</p>
+                        <button
+                        type="button"
+                        className={`${styles.link} ${styles.logoutBtn}`}
+                        onClick={handleLogout}>
+                        <span>LOGOUT</span>
+                      </button>
                     ):(
                         <div className={styles.releases}>
                             <h5>PRÓXIMAMENTE!!</h5>

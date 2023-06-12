@@ -13,10 +13,10 @@ export function HomePage() {
   }, [])
 
   return (
-    <div>
+    <div className={styles.root}>
       <Carousel/>
       <div className={styles.titleContainer}>      
-        <h1 className={styles.title}>EN CARTELERA</h1>  
+        <h1 className={styles.title}>NOW PLAYING</h1>  
       </div>  
       <div className={styles.movies}>
         {isLoading && (
@@ -30,7 +30,7 @@ export function HomePage() {
       </div>
       
       <div className={styles.titleContainer}>      
-        <h1 className={styles.title}>PRÓXIMOS ESTRENOS</h1>  
+        <h1 className={styles.title}>UPCOMING</h1>  
       </div>
 
       <div className={styles.movies}>

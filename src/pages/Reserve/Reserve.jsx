@@ -2,15 +2,19 @@ import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Reserve.module.css";
 import { homeURL, loginURL } from "../../constants/urls";
-import {
-  emailPasswordRegister,
-  googleLogin,
-} from "../../firebase/auth-service";
+
 import { useState } from "react";
+import { SeatsGrid } from '../../components/SeatsGrid/SeatsGrid';
 
 export function Reserve() {
     const navigate = useNavigate();
     const [formData, setData] = useState({});
+
+    const [selectedSeats, setSelectedSeats] = useState([]);
+
+    const handleSelectedSeats = (seats) => {
+        setSelectedSeats(seats);
+    };
   
     const onSuccess = () => {
       navigate(homeURL);
@@ -20,16 +24,13 @@ export function Reserve() {
       console.log("REGISTER FAILED, Try Again");
     };
   
-    const handleSubmit = async (event) => {
+    const handleSubmit = (event) => {
       event.preventDefault();
-  
+
+      console.log(selectedSeats);
       const {email, password, ...extraData} = formData;
       
-      await emailPasswordRegister({
-        reserveData: formData,
-        onSuccess,
-        onFail,
-      });
+
     };
   
     const whenChange = (event) => {
@@ -92,19 +93,8 @@ export function Reserve() {
             </div>
 
             {/*Tickets Quantity*/}
-            <div className={styles.inputContainer}>
-                <label htmlFor="quantity">
-                <span>Tickets Quantity (Max. 5)</span>
-                </label>
-                <input
-                type="number"
-                max={5}
-                min={1}
-                name="quantity"
-                id="quantity"
-                placeholder="Eg. 1"
-                onChange={whenChange}
-                />
+            <div className={styles.seatsGrid}>
+                <SeatsGrid handleSelected = {handleSelectedSeats} />
             </div>
 
             <button

@@ -10,6 +10,7 @@ import { homeURL,
 import styles from "./Navbar.module.css";
 import { logout } from "../../firebase/auth-service";
 import { useUser } from "../../contexts/UserContext";
+import logo from "./Logo.png";
 
 export function NavBar() {
   const navigate = useNavigate();
@@ -35,7 +36,8 @@ export function NavBar() {
       <ul className={styles.menuList}>
         <li className={`${styles.menuItem} ${styles.menuItemLeft}`}>
           <Link to={homeURL} className={styles.link}>
-            <span>Home</span>
+            <img src={logo} className={styles.logo} />
+            {/* <span>Home</span> */}
           </Link>
         </li>
       </ul>

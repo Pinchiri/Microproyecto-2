@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: right;
     background: #1E1E1E;
     font-weight: 500;
     width: 100%;
@@ -18,11 +18,12 @@
   
   .navbar .menuList .menuItem {
     border-radius: 6px;
-    border: 1px solid transparent;
+    margin: none;
+
   }
   
   .navbar .menuList .menuItem.menuItemLeft:hover {
-    background: #868686;
+
     transform: scale(1.10);
   }
 
@@ -32,10 +33,11 @@
   }
   
   .navbar .menuList .menuItem.menuItemLeft {
-    margin: none;
+    margin: 10%;
     border: none;
     
   }
+  
   .navbar .menuList .menuItem.menuItemRight {
     display: flex;
     background-color: #FCBF49;
@@ -98,4 +100,9 @@
   .navbar .menuList .menuItem.loggedUser:hover {
     transform: scale(1.05);
     background: #868686;
+  }
+
+  .logo {
+    width: 100px;
+    height: 35px;
   }

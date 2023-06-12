@@ -1,48 +1,48 @@
 .carousel{
-    position: relative;
     overflow: hidden;
-    padding: 26px;
-    margin: 10px;
-    margin-bottom: 5px;
     display: flex;
-    align-self: center;
+    align-items: center;
+    padding: none;
 }
 
 .container{
-    padding: 0 10px;
+
     display: flex;
     overflow-x: hidden;
-    scroll-behavior: smooth;
+
 }
 
 .previous_btn, .next_btn{
     border: none;
     background-color: rgba(255, 170, 0, 0);
-    width: 40px;
+    width: 70px;
     height: 100%;
-    top: 0;
-    position:absolute;
+    border-radius: 5px;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
+    
 }
 
 
 .next_btn{
-    right: 0;
+    right: 0px;
 }
 
 .previous_btn p, .next_btn p{
     font-size: 50px;
     font-weight: bold;
-    border-radius: 5px;
-    background-color: #fcc049;    
-    color: #1e1e1e;
-    cursor:pointer
+    background-color: #1e1e1e;    
+    color: #fff;
+    cursor:pointer;
+    width: 100px;
+    border-radius: 200%;
+
 }
 
 .previous_btn p:hover, .next_btn p:hover{
-    background-color: #f7a90e;    
+    background-color: #fff;   
+    color: #1e1e1e; 
     transform: scale(1.10);
 }
