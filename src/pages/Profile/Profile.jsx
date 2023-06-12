@@ -52,7 +52,7 @@ export function Profile() {
       <div className={styles.movies}>
         {isLoading && <h1>CARGANDO...</h1>}
         {!isLoadingUser || moviesArray.length === 0 ? (
-          <h1>No hay películas favoritas</h1>
+          <h1 className={styles.noMovies}>No hay películas favoritas</h1>
         ) : (
           moviesArray.map((movie) => (
             <MovieCard movie={movie} key={movie.id} />
