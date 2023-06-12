@@ -19,3 +19,7 @@ export async function fetchInfo(id){
 export async function fetchCredits(id){
     return axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=28f882571b90834cf3bf26f959b6b90f`)
 }
+
+export async function fetchSearch(name){
+    return axios.get(`https://api.themoviedb.org/3/search/movie?query=${name}&api_key=28f882571b90834cf3bf26f959b6b90f`)
+}
