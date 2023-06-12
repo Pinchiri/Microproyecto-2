@@ -1,55 +1,122 @@
 .container {
-    width: fit-content;
+    width: 95%;
     height: auto;
     display: flex;
-    flex-direction: row;
-    margin: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     margin-top: 20px;
     margin-bottom: 20px;
     padding: 10px;
     background-color: #1e1e1e;
     border-radius: 10px;
+
+}
+
+.infoGen {
+    display: flex;
+    flex-direction: column;
 }
 
 .infoContainer{
     display: flex;
     flex-direction: column;
-    align-content: space-around;
+    justify-content: center;
+    align-items: center;
+
     margin-left: 10px;
-    font-size: 15px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10%;
+
 }
 
 .image {
-    width: 400px;
+    display: flex;
+    width: 90%;
     height: auto;
-    border-radius: 10px;
-    margin: 10px;
+    border-radius: 20px;
+    align-self: center;
+    margin-bottom: 15px;
 }
 
-.original_title{
+.title{
     text-align: center;
-    font-weight: bold;
-    font-size: 45px;
+    font-weight: 600;
+    font-size: 40px;
 }
 
 .overview {
+    display: flex;
     color: white;
     font-size: 18px;
-    text-align: center;
+    text-align: left;
+
 }
 
 .otherInfo {
     background-color: #1e1e1e;
     border-radius: 20px;
+    font-size: 20px;
+    justify-self: center;
+    align-self: center;
 }
 
+.listContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .actorList{
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    font-size: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    font-size: 15px;
+    list-style: none;
+    padding: 5%;
+    gap: 10px;
+    
 }
 
 .releases{
     text-align: center;
     font-size: 20px;
+}
+
+.reserveButton {
+
+    background-color: #FCBF49;
+    margin-right: 10px;
+    width: 50%;
+    height: 40px;
+    justify-content: center;
+    align-self: center;
+    
+    align-items: center;
+    border-radius: 20px;
+    margin: none;
+
+}
+
+.favoriteButton {
+    background-color: #fff;
+}
+
+.link {
+    margin-right: 10px;
+    width: 70%;
+    height: 60px;
+    border-radius: 20px;
+    color: #1E1E1E;
+    font-weight: 600;
+    margin-bottom: 10px;
+    align-self: center;
+    
+    align-items: center;
 }

@@ -4,9 +4,12 @@ export function Footer() {
     return (
       <div className={styles.footer}>
         <div className={styles.textContainer}>
-          <div> 0414-2222222</div>
-          <div>ejemplo@unimet.edu.ve</div>
-          <div>Universidad Metropolitana</div>
+          <div className={styles.other}> 0414-2222222</div>
+          <div className={styles.names}>
+            <p>Rolando Sorrentino</p>
+            <p>Tomás Gil</p>
+          </div>
+          <div className={styles.other}>Universidad Metropolitana</div>
         </div>
       </div>
     );

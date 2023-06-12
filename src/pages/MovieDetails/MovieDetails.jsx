@@ -4,10 +4,13 @@ import { fetchInfo } from "../../utils/movie-api";
 import { fetchCredits } from "../../utils/movie-api";
 import styles from "./MovieDetails.module.css"
 import { homeURL, reserveURL } from "../../constants/urls";
+import { useUser } from "../../contexts/UserContext";
+import { updateUserMovies } from "../../firebase/users-service";
 
 
 export function MovieDetails() {
 
+    const { user, isLoadingUser } = useUser(); 
     const [movie, setMovie] = useState(null);
     const [credits, setCredits] = useState(null);
     const { movieId } = useParams();
@@ -30,9 +33,17 @@ export function MovieDetails() {
         setLoading(false)
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit =  (event) => {
         event.preventDefault();
         navigate(`/reserve/${movieId}`);
+ 
+      };
+    
+      const handleFavorite = async (event) => {
+        event.preventDefault();
+        
+        const favorites = [movieId];
+        await updateUserMovies(user.uid, favorites);
  
       };
 
@@ -42,6 +53,8 @@ export function MovieDetails() {
             getCredits(movieId)
         }
     }, [])
+
+
 
     if (isLoading) {
         return(
@@ -54,7 +67,7 @@ export function MovieDetails() {
     if (!isLoading && movie && credits) {
         return(
             <div className={styles.container}>
-                <div>
+                <div className={styles.infoGen}>
                     <img src={movie.poster_path != null ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : null} className={styles.image} alt=""/>
                     {movie.status == "Released" ? (
                         <button
@@ -64,17 +77,24 @@ export function MovieDetails() {
                         >
                         <span>RESERVE</span>
                       </button>
+                        
                     ):(
                         <div className={styles.releases}>
                             <h5>UPCOMING!!</h5>
                             <h5>Release Date: {movie.release_date}</h5>
                         </div>
                     )}
-                    
+                    <button
+                        type="button"
+                        className={`${styles.link} ${styles.favoriteButton}`}
+                        onClick={handleFavorite}
+                        >
+                        <span>ADD TO FAVORITES</span>
+                      </button>
                 </div>
                 <div className={styles.infoContainer}>
-                    <div>
-                        <h1 className={styles.original_title}>{movie.original_title}</h1>
+                    <div className={styles.info}>
+                        <h1 className={styles.title}>{movie.original_title}</h1>
                         <p className={styles.overview}>{movie.overview}</p>
                     </div>
 
@@ -96,8 +116,8 @@ export function MovieDetails() {
                     </div>
 
                     <div>
-                        <div>
-                            <h5>Actors: </h5>
+                        <div className={styles.listContainer}>
+                            <h5 className={styles.overview}>Actors: </h5>
                             <ul className={styles.actorList}>
                                 {credits.cast.map((actor) => {
                                     if(actor.known_for_department == "Acting"){                                                

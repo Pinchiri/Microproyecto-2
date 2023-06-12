@@ -10,6 +10,7 @@ import { Register } from './pages/Register/Register'
 import { PrivateRoute } from './components/PrivateRoute/PrivateRoute.jsx'
 import { MovieDetails } from './pages/MovieDetails/MovieDetails'
 import { Reserve } from './pages/Reserve/Reserve'
+import { Profile } from './pages/Profile/Profile'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -26,7 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         } />
         <Route path = {profileURL} element = {
           <PrivateRoute>
-            <h1>PROFILE</h1>
+            <Profile />
           </PrivateRoute>
         } />
         <Route path = {adminURL} element = {

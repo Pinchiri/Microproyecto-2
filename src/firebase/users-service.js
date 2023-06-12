@@ -23,8 +23,8 @@ import {
     return addDoc(collection(db, usersCollection), restData);
   }
   
-  export async function updateUser(userId, data) {
-    const userRef = doc(db, usersCollection, userId);
+  export async function updateUserMovies(userId, data) {
+    const userRef = collection(db, usersCollection, userId, "favorites");
     return updateDoc(userRef, data);
   }
   

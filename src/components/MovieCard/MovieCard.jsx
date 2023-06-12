@@ -24,6 +24,7 @@ export function MovieCard( {movie}){
 
     return(
         <div className={styles.cardContainer}>
+            <Link to={`/movies/${movie.id}`} className={styles.link}>  
             <div>
                 <img                    
                     src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -34,21 +35,22 @@ export function MovieCard( {movie}){
             <div className={styles.rightContainer}>
                 <div className={styles.infoContainer}>
                     <p className={styles.big}>
-                        <Link to={`/movies/${movie.id}`} className={styles.link}>                            
+                                                  
                             {movie.original_title}
-                        </Link>
+                        
                     </p>
                     <p className={styles.medium}>
-                        {`Lenguaje: ${movie.original_language}`}
+                        {`Language: ${movie.original_language}`}
                     </p>
                     <p className={styles.medium2}>
-                        Géneros:
+                        Genres:
                     </p>
                     <div id="Genre Container">
                         {generos}
                     </div>
                 </div>
             </div>
+            </Link>
         </div>
     )
 }
