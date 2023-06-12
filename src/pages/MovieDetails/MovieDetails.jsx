@@ -109,7 +109,7 @@ export function MovieDetails() {
                                 (spoken_languages) => {return (`${spoken_languages.english_name} `)}
                             )}</h5>
                             <h5>
-                                Duration: {movie.runtime} minutos
+                                Duration: {movie.runtime} minutes
                             </h5>
                         </div>                        
                     </div>

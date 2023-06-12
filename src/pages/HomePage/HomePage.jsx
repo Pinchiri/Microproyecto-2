@@ -5,7 +5,14 @@ import { useMovies } from '../../hooks/useMovie'
 import styles from './HomePage.module.css';
 
 export function HomePage() {
-  const { movies,newMovies, isLoading, getMovies, getNewMovies} = useMovies(); 
+  const { movies,newMovies, searchResult, isLoading, getMovies, getNewMovies, getResults} = useMovies(); 
+
+  
+
+  const onChange = () =>{    
+    var no = document.getElementById('movieSearchBox').value;
+    getResults(no);    
+  }
 
   useEffect(()=>{
     getMovies()
@@ -15,34 +22,65 @@ export function HomePage() {
   return (
     <div className={styles.root}>
       <Carousel/>
-      <div className={styles.titleContainer}>      
-        <h1 className={styles.title}>NOW PLAYING</h1>  
-      </div>  
-      <div className={styles.movies}>
-        {isLoading && (
-          <h1>CARGANDO...</h1>
-        )}
-        {!isLoading && movies.map((movie)=>{
-          return(          
-            <MovieCard movie={movie} key={movie.id}/>
-          )
-        })}
+      <div className={styles.searchBox}>
+        <input 
+          type='text' 
+          name='movieSearch'
+          id = 'movieSearchBox'
+          className={styles.input}
+          placeholder='Nombre de película'
+          onChange={onChange}
+        />
       </div>
-      
-      <div className={styles.titleContainer}>      
-        <h1 className={styles.title}>UPCOMING</h1>  
-      </div>
+      {searchResult.length == 0 ?(
+        <>
+          <div className={styles.titleContainer}>      
+            <h1 className={styles.title}>NOW PLAYING</h1>  
+          </div>  
+          <div className={styles.movies}>
+            {isLoading && (
+              <h1>CARGANDO...</h1>
+            )}
+            {!isLoading && movies.map((movie)=>{
+              return(          
+                <MovieCard movie={movie} key={movie.id}/>
+              )
+            })}
+          </div>
+          
+          <div className={styles.titleContainer}>      
+            <h1 className={styles.title}>UPCOMING</h1>  
+          </div>
 
-      <div className={styles.movies}>
-        {isLoading && (
-          <h1>CARGANDO...</h1>
-        )}
-        {!isLoading && newMovies.map((movie)=>{
-          return(          
-            <MovieCard movie={movie} key={movie.id}/>
-          )
-        })}
-      </div>  
+          <div className={styles.movies}>
+            {isLoading && (
+              <h1>CARGANDO...</h1>
+            )}
+            {!isLoading && newMovies.map((movie)=>{
+              return(          
+                <MovieCard movie={movie} key={movie.id}/>
+              )
+            })}
+          </div> 
+        </>
+      ):(
+        <>          
+          <div className={styles.titleContainer}>      
+              <h1 className={styles.title}>RESULTADOS DE BÚSQUEDA</h1>  
+          </div>
+          <div className={styles.movies}>
+            {isLoading && (
+              <h1>CARGANDO...</h1>
+            )}
+            {!isLoading && searchResult.map((movie)=>{
+              return(          
+                <MovieCard movie={movie} key={movie.id}/>
+              )
+            })}
+          </div>
+        </>        
+      )}
+       
       
     </div>    
   )
