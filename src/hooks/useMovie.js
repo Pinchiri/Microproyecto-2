@@ -14,6 +14,7 @@ export function useMovies(){
         setLoading(true);
         const {data} = await fetchMovies()
         setMovies(data.results);
+        console.log(data.results);
         setLoading(false);
     }
 

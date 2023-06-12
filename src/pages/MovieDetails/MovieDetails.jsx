@@ -5,7 +5,7 @@ import { fetchCredits } from "../../utils/movie-api";
 import styles from "./MovieDetails.module.css"
 import { homeURL, reserveURL } from "../../constants/urls";
 import { useUser } from "../../contexts/UserContext";
-import { updateUserMovies } from "../../firebase/users-service";
+import { updateUserFavorites } from "../../firebase/users-service";
 
 
 export function MovieDetails() {
@@ -16,12 +16,13 @@ export function MovieDetails() {
     const { movieId } = useParams();
     const [isLoading, setLoading] = useState(false);
     const navigate = useNavigate();
+    
 
     const getSingleMovie = async (movieId) => {
         setLoading(true)
         const response = await fetchInfo(movieId);
         setMovie(response.data)
-        console.log(response.data)
+
         setLoading(false)
     }
 
@@ -29,7 +30,7 @@ export function MovieDetails() {
         setLoading(true)
         const response = await fetchCredits(movieId);
         setCredits(response.data)
-        console.log(response.data)
+
         setLoading(false)
     }
 
@@ -41,9 +42,7 @@ export function MovieDetails() {
     
       const handleFavorite = async (event) => {
         event.preventDefault();
-        
-        const favorites = [movieId];
-        await updateUserMovies(user.uid, favorites);
+        await updateUserFavorites(user.id, movieId);
  
       };
 

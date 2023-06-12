@@ -23,11 +23,47 @@ import {
     return addDoc(collection(db, usersCollection), restData);
   }
   
-  export async function updateUserMovies(userId, data) {
-    const userRef = collection(db, usersCollection, userId, "favorites");
-    return updateDoc(userRef, data);
+  export async function updateUserFavorites(userId, newFavs) {
+    const allFavs = [];
+    const userRef = doc(db, usersCollection, userId);
+    const oldFavs = await getUserMovies(userId);
+
+    if (oldFavs.includes(newFavs)) {
+      return console.error("USER ALREADY HAS THAT MOVIE AS FAVORITE");
+    } else {
+      if (oldFavs.length < 1) {
+        allFavs.push(newFavs);
+      } else {
+        
+        for (let index = 0; index < oldFavs.length; index++) {
+          const element = oldFavs[index];
+          allFavs.push(element); 
+        }
+        allFavs.push(newFavs)
+
+        try {
+          await updateDoc(userRef, { "favorites": allFavs });
+          console.log('FAVORITES UPDATED SUCCESFULLY');
+        } catch (error) {
+          console.error('ERROR UPDATING FAVORITES:', error);
+        }
+      }
+    } 
   }
   
+  export async function getUserMovies(userID) {
+    const userRef = doc(db, usersCollection, userID);
+    try {
+      const userDoc = await getDoc(userRef);
+      const favorites = userDoc.data().favorites;
+      console.log('OBTAINED: ', favorites);
+      return favorites;
+    } catch (error) {
+      console.error('ERROR', error);
+      return null;
+    }
+  }
+
   export async function getUserById(userId) {
     const userRef = doc(db, usersCollection, userId);
     return getDoc(userRef);

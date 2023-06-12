@@ -60,7 +60,7 @@ export function Reserve() {
 
         createReservation(formData);
         createMovieFunction(functionData);
-
+        navigate(homeURL);
     };
   
     const whenChange = (event) => {
