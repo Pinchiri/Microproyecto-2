@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { fetchInfo } from "../../utils/movie-api";
 import { fetchCredits } from "../../utils/movie-api";
 import styles from "./MovieDetails.module.css"
+import { homeURL, reserveURL } from "../../constants/urls";
 
 
 export function MovieDetails() {
@@ -10,7 +11,8 @@ export function MovieDetails() {
     const [movie, setMovie] = useState(null);
     const [credits, setCredits] = useState(null);
     const { movieId } = useParams();
-    const [isLoading, setLoading] = useState(false)
+    const [isLoading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const getSingleMovie = async (movieId) => {
         setLoading(true)
@@ -27,6 +29,12 @@ export function MovieDetails() {
         console.log(response.data)
         setLoading(false)
     }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        navigate(`/reserve/${movieId}`);
+ 
+      };
 
     useEffect(() => {
         if (!isLoading && movieId) {
@@ -51,14 +59,15 @@ export function MovieDetails() {
                     {movie.status == "Released" ? (
                         <button
                         type="button"
-                        className={`${styles.link} ${styles.logoutBtn}`}
-                        onClick={handleLogout}>
-                        <span>LOGOUT</span>
+                        className={`${styles.link} ${styles.reserveButton}`}
+                        onClick={handleSubmit}
+                        >
+                        <span>RESERVE</span>
                       </button>
                     ):(
                         <div className={styles.releases}>
-                            <h5>PRÓXIMAMENTE!!</h5>
-                            <h5>Fecha de Estreno: {movie.release_date}</h5>
+                            <h5>UPCOMING!!</h5>
+                            <h5>Release Date: {movie.release_date}</h5>
                         </div>
                     )}
                     
@@ -72,23 +81,23 @@ export function MovieDetails() {
                     <div className={styles.otherInfo}>
                         <div>
                             <h5>
-                                Géneros: {movie.genres.map(
+                                Genres: {movie.genres.map(
                                     (genre) => {return (`${genre.name} `)}
                                 )}
                             </h5>
                             <h5>
-                                Lenguajes: {movie.spoken_languages.map(
+                                Languages: {movie.spoken_languages.map(
                                 (spoken_languages) => {return (`${spoken_languages.english_name} `)}
                             )}</h5>
                             <h5>
-                                Duración: {movie.runtime} minutos
+                                Duration: {movie.runtime} minutos
                             </h5>
                         </div>                        
                     </div>
 
                     <div>
                         <div>
-                            <h5>Actores: </h5>
+                            <h5>Actors: </h5>
                             <ul className={styles.actorList}>
                                 {credits.cast.map((actor) => {
                                     if(actor.known_for_department == "Acting"){                                                

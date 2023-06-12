@@ -5,18 +5,20 @@ export function SeatsGrid({ handleSelected }) {
     const maxCapacity = 5;
     const [selected, setSelected] = useState([]);
 
-    const handleClick = (seat) => {
-        if (!selected.includes(seat)) {
-            if (selected.length < maxCapacity || selected.includes(seat)) {
-                setSelected([...selected, seat]);
-            }
-            
-        } else {
-            setSelected(selected.filter((s) => s !== seat));
-        }
-
+    useEffect(() => {
         handleSelected(selected);
-    };
+      }, [selected, handleSelected]);
+    
+      const handleClick = (seat) => {
+        if (selected.includes(seat)) {
+          setSelected(selected.filter((s) => s !== seat));
+        } else {
+          if (selected.length < maxCapacity) {
+            setSelected([...selected, seat]);
+          }
+        }
+      };
+    
 
     const isSelected = (seat) => {
         return selected.includes(seat);
@@ -62,7 +64,6 @@ export function SeatsGrid({ handleSelected }) {
                 </div>
                 {displaySeats()}
             </div>
-
         </div>
     );
 }

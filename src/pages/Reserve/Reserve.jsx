@@ -1,16 +1,33 @@
-import React from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { Link, useNavigate, useParams } from "react-router-dom";
 import styles from "./Reserve.module.css";
 import { homeURL, loginURL } from "../../constants/urls";
 
 import { useState } from "react";
 import { SeatsGrid } from '../../components/SeatsGrid/SeatsGrid';
+import { createMovieFunction, createReservation } from '../../firebase/reserveManagement';
+import { useUser } from '../../contexts/UserContext';
+import { useMovies } from '../../hooks/useMovie';
+import { fetchInfo } from "../../utils/movie-api";
 
 export function Reserve() {
     const navigate = useNavigate();
     const [formData, setData] = useState({});
-
+    const { movieId } = useParams();
+    const { user, isLoadingUser } = useUser();
     const [selectedSeats, setSelectedSeats] = useState([]);
+    let total = 0;
+
+    const [isLoading, setLoading] = useState(false);
+    const [movie, setMovie] = useState(null);
+
+    
+    const getSingleMovie = async (movieId) => {
+        setLoading(true)
+        const response = await fetchInfo(movieId);
+        setMovie(response.data)
+        setLoading(false)
+    }
 
     const handleSelectedSeats = (seats) => {
         setSelectedSeats(seats);
@@ -24,23 +41,51 @@ export function Reserve() {
       console.log("REGISTER FAILED, Try Again");
     };
   
-    const handleSubmit = (event) => {
-      event.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const functionData = {};
+        calculateCosts();
+        const {email, ...extraData} = formData;
+        functionData["id"] = movieId;
+        formData["uid"] = user.id;
+        formData["ticketQuantity"] = selectedSeats.length
+        formData["totalCost"] = total;
+        formData["movieTitle"] = movie["original_title"];
+        
+        for (let index = 0; index < selectedSeats.length; index++) {
+            const seat = selectedSeats[index];
 
-      console.log(selectedSeats);
-      const {email, password, ...extraData} = formData;
-      
+            functionData[seat] = false; 
+        }
+
+        createReservation(formData);
+        createMovieFunction(functionData);
 
     };
   
     const whenChange = (event) => {
       const {name, value} = event.target;
-  
       setData((oldData) => ({
         ...oldData,
         [name]: value,
       }));
     };
+
+    const calculateCosts = () => {
+        
+        for (let i = 0; i < selectedSeats.length; i++) {
+            const ticketCost = Math.floor(Math.random() * 4001) + 1000; // Genera un número aleatorio entre 1000 y 5000
+            total += ticketCost;
+          }
+        
+        return total;
+    }
+
+    useEffect(() => {
+        if (!isLoading && movieId) {
+            getSingleMovie(movieId) 
+        }
+    }, [])
 
   return (
     <div>
@@ -94,7 +139,7 @@ export function Reserve() {
 
             {/*Tickets Quantity*/}
             <div className={styles.seatsGrid}>
-                <SeatsGrid handleSelected = {handleSelectedSeats} />
+                <SeatsGrid handleSelected = {handleSelectedSeats} onChange={whenChange} />
             </div>
 
             <button

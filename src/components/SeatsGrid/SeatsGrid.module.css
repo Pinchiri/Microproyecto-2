@@ -68,23 +68,6 @@
     border: 3px solid #f7a90e;
 
   }
-  
-  .selected-seats {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 10px;
-  }
-  
-  .selected-seats h3 {
-    margin-bottom: 10px;
-  }
-  
-  .selected-seats span {
-    margin: 5px;
-    white-space: nowrap;
-  }
 
   .seatCount {
 
