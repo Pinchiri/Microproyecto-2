@@ -11,7 +11,6 @@ export function HomePage() {
 
   const onChange = () =>{    
     var no = document.getElementById('movieSearchBox').value;
-    console.log(no)
     getResults(no);    
   }
 

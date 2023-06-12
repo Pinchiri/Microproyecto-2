@@ -21,7 +21,6 @@ export function MovieDetails() {
         setLoading(true)
         const response = await fetchInfo(movieId);
         setMovie(response.data)
-        console.log(response.data)
         setLoading(false)
     }
 
@@ -29,7 +28,6 @@ export function MovieDetails() {
         setLoading(true)
         const response = await fetchCredits(movieId);
         setCredits(response.data)
-        console.log(response.data)
         setLoading(false)
     }
 
@@ -110,7 +108,7 @@ export function MovieDetails() {
                                 (spoken_languages) => {return (`${spoken_languages.english_name} `)}
                             )}</h5>
                             <h5>
-                                Duration: {movie.runtime} minutos
+                                Duration: {movie.runtime} minutes
                             </h5>
                         </div>                        
                     </div>
