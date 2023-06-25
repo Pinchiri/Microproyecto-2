@@ -100,3 +100,22 @@
     color: #fff;
     text-decoration: underline;
   }
+
+  .choose {
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 24px;
+    text-align: center;
+    color: #fff;
+    margin-top: 50px;
+  }
+
+  .price {
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #fff;
+ 
+  }

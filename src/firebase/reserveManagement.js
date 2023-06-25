@@ -72,8 +72,6 @@ export async function updateFunction(movieID, data) {
 export async function createReservation(data) {
     const { uid, ...restData } = data;
 
-    const test = await getReservation("WLfSXqc9MVWpRXoFEg88");
-
     await addDoc(collection(db, reservesCollection), data);
 
 }

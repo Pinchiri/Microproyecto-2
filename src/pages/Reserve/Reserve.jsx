@@ -19,6 +19,7 @@ export function Reserve() {
 
     const [isLoading, setLoading] = useState(false);
     const [movie, setMovie] = useState(null);
+    const [ticketPrice, setTicketPrice] = useState(0);
 
     const [total, setTotal] = useState(0);
     
@@ -31,6 +32,7 @@ export function Reserve() {
 
     const handleSelectedSeats = (seats) => {
         setSelectedSeats(seats);
+        calculateCosts();
     };
   
     const onSuccess = () => {
@@ -43,8 +45,10 @@ export function Reserve() {
   
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        
+        
         const functionData = {};
-        calculateCosts();
         const {email, ...extraData} = formData;
         functionData["id"] = movieId;
         formData["uid"] = user.id;
@@ -52,6 +56,16 @@ export function Reserve() {
         formData["totalCost"] = total;
         formData["movieTitle"] = movie["original_title"];
         
+        if (formData["name"] == undefined || formData["email"] == undefined || formData["ci"] == undefined ) {
+            window.alert("You have to fill the form to make the reservation");
+            return;
+        }
+        
+        if (selectedSeats.length < 1) {
+            window.alert("You have to choose a seat");
+            return;
+        }
+
         for (let index = 0; index < selectedSeats.length; index++) {
             const seat = selectedSeats[index];
 
@@ -60,6 +74,7 @@ export function Reserve() {
 
         createReservation(formData);
         createMovieFunction(functionData);
+        window.alert("You have succesfully reserved! " + `\nThe Total Cost of your tickets is: $${total}`);
         navigate(homeURL);
     };
   
@@ -73,11 +88,14 @@ export function Reserve() {
     };
 
     function calculateCosts() {
-        for (let i = 0; i < selectedSeats.length; i++) {
-            const random = Math.floor(Math.random() * 4001) + 1000; // Genera un número aleatorio entre 1000 y 5000
-            setTotal(total + random);
-        }
+        const totalCost = ticketPrice * selectedSeats.length;
+        setTotal(totalCost);
     }
+
+    useEffect(() => {
+        const random = Math.floor(Math.random() * 4001) + 1000; // Genera un número aleatorio entre 1000 y 5000
+        setTicketPrice(random);
+    }, [])
 
     useEffect(() => {
         if (!isLoading && movieId) {
@@ -135,7 +153,12 @@ export function Reserve() {
                 onChange={whenChange}
                 />
             </div>
-
+            <div className={styles.choose}>
+                Choose your seats (Max. 5)
+            </div>
+            <div className={styles.price}>
+                {`Ticket Price: $${ticketPrice}`} 
+            </div>
             {/*Tickets Quantity*/}
             <div className={styles.seatsGrid}>
                 <SeatsGrid handleSelected = {handleSelectedSeats} onChange={whenChange} />

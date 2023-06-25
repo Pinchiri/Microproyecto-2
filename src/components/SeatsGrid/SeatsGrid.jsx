@@ -56,9 +56,6 @@ export function SeatsGrid({ handleSelected }) {
 
     return (
         <div className={styles.container}>
-            <div className={styles.title}>
-                Choose your seats (Max. 5)
-            </div>
             <div className={styles.map}>
                 <div className={styles.seatCount}>
                     <p>Selected {selected.length}</p>

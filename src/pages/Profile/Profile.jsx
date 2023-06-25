@@ -77,7 +77,7 @@ export function Profile() {
           </div>
       
           <div className={styles.label}>RESERVES</div>
-          <div className={styles.movies}>
+          <div className={styles.reserves}>
             {isLoading && (
               <h1>CARGANDO...</h1>
             )}
