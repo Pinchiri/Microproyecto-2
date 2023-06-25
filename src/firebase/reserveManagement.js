@@ -72,13 +72,13 @@ export async function updateFunction(movieID, data) {
 export async function createReservation(data) {
     const { uid, ...restData } = data;
 
-    const test = await getReservation("PAFgRBy1eBZVCFZrACN6N4fjmyp1");
+    const test = await getReservation("WLfSXqc9MVWpRXoFEg88");
 
     await addDoc(collection(db, reservesCollection), data);
 
 }
 
-export async function getReservation(userID) {
+export async function getUserReservations(userID) {
     const reserveQuery = query(
       collection(db, reservesCollection),
       where("uid", "==", userID)

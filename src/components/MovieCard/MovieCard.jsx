@@ -3,7 +3,7 @@ import styles from './MovieCard.module.css';
 import { useMovies } from '../../hooks/useMovie'
 import { Link } from "react-router-dom";
 
-export function MovieCard( {movie}){
+export function MovieCard({movie}){
     const {genres, getGenres} = useMovies();
 
     useEffect(()=>{
@@ -12,16 +12,26 @@ export function MovieCard( {movie}){
           
     let generos = "";
 
-    if(genres.length!=0){        
-        for(let i = 0; i < movie.genre_ids.length; i++){
-            for(let j = 0; j < genres.length; j++){
-                if(movie.genre_ids[i] == genres[j].id){
-                    generos += `${genres[j].name} `;
+    
+    if (movie.profile == true) {
+        if(movie.genres.length!=0){
+            for (let index = 0; index < movie.genres.length; index++) {
+                generos += `${movie.genres[index].name} `;   
+            }
+
+        }
+    } else if (movie.profile == false) {
+        if(genres.length!=0){        
+            for(let i = 0; i < movie.genre_ids.length; i++){
+                for(let j = 0; j < genres.length; j++){
+                    if(movie.genre_ids[i] == genres[j].id){
+                        generos += `${genres[j].name} `;
+                    }
                 }
             }
         }
     }
-
+    
     return(
         <div className={styles.cardContainer}>
             <Link to={`/movies/${movie.id}`} className={styles.link}>  

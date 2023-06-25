@@ -5,13 +5,19 @@ import { getUserMovies } from '../../firebase/users-service';
 import { fetchInfo } from '../../utils/movie-api';
 import { MovieCard } from '../../components/MovieCard/MovieCard';
 import { render } from 'react-dom';
+import { getUserReservations } from '../../firebase/reserveManagement';
+import ReserveCard from '../../components/ReserveCard/ReserveCard';
 
 export function Profile() {
   const { user, isLoadingUser } = useUser();
 
   const [isLoading, setLoading] = useState(false);
-  const [moviesArray, setMoviesArray] = useState([]);
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
+  const [reservations, setReservations] = useState([]);
+
   const [hasLoaded, setHasLoaded] = useState(false);
+
+  const profile = "true";
 
   const displayName = (userName) => {
     userName = userName.charAt(0).toUpperCase() + userName.slice(1); 
@@ -31,18 +37,27 @@ export function Profile() {
     for (let index = 0; index < favorites.length; index++) {
       const favoriteID = favorites[index];
       const apiMovie = await getSingleMovie(favoriteID);
-      moviesInfo.push(apiMovie);
+      moviesInfo.push(apiMovie.data);
+      
     }
     
-    setMoviesArray(moviesInfo);
+    setFavoriteMovies(moviesInfo);
+
+    setHasLoaded(true);
+  }
+
+  const getReservations = async () => {
+    const reserves = await getUserReservations(user.id);
+    
+    setReservations(reserves);
     setHasLoaded(true);
   }
 
   useEffect(() => {
-    if (!isLoadingUser && !hasLoaded) {
       getFavorites();
-    }
-  }, [isLoadingUser, hasLoaded]);
+      getReservations();
+
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -50,15 +65,29 @@ export function Profile() {
       <div className={styles.userName}>{displayName(user.name)}</div>
       <div className={styles.label}>FAVORITE MOVIES</div>
       <div className={styles.movies}>
-        {isLoading && <h1>CARGANDO...</h1>}
-        {!isLoadingUser || moviesArray.length === 0 ? (
-          <h1 className={styles.noMovies}>No hay películas favoritas</h1>
-        ) : (
-          moviesArray.map((movie) => (
-            <MovieCard movie={movie} key={movie.id} />
-          ))
-        )}
-      </div>
+            {isLoading && (
+              <h1>CARGANDO...</h1>
+            )}
+            {!isLoading && favoriteMovies.length > 0 && favoriteMovies.map((movie)=>{
+              movie["profile"] = true;
+              return(          
+                <MovieCard movie={movie} key={movie.id} profile={profile}/>
+              )
+            })}
+          </div>
+      
+          <div className={styles.label}>RESERVES</div>
+          <div className={styles.movies}>
+            {isLoading && (
+              <h1>CARGANDO...</h1>
+            )}
+            {!isLoading && reservations.length > 0 && reservations.map((reservation)=>{
+              return(          
+                <ReserveCard reservation={reservation} />
+              )
+            })}
+          </div>
     </div>
+        
   );
 }

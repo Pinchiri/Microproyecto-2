@@ -17,6 +17,7 @@ export function HomePage() {
   useEffect(()=>{
     getMovies()
     getNewMovies()
+
   }, [])
 
   return (
@@ -42,8 +43,9 @@ export function HomePage() {
               <h1>CARGANDO...</h1>
             )}
             {!isLoading && movies.map((movie)=>{
+              movie["profile"] = false;
               return(          
-                <MovieCard movie={movie} key={movie.id}/>
+                <MovieCard movie={movie} key={movie.id} />
               )
             })}
           </div>
