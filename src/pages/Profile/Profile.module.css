@@ -40,6 +40,7 @@
     align-self: center;
     overflow:hidden;
 
+
 }
 
 .reserves{
@@ -48,7 +49,8 @@
     grid-template-rows: auto;
     place-items: center;
     overflow:hidden;
-    
+    gap: 10px;
+    margin: 20px;
 }
 
 .noMovies {
@@ -76,6 +78,39 @@
 
 }
 
+.hiddenButton {
+
+    background-color: #FCBF49;
+
+    margin-top: 20px;
+}
+
+.hidden {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.link {
+
+    width: 70%;
+    height: 60px;
+    border-radius: 20px;
+    color: #1E1E1E;
+    font-weight: 600;
+    margin-bottom: 10px;
+
+    border: none;
+    align-items: center;
+    font-size: 20px;
+}
+
+.hiddenButton:hover {
+    transform: scale(1.05);
+    background-color: #f7a90e;
+}
+
 @media screen and (min-width: 767px) {
     .movies{
         display: grid;
@@ -83,6 +118,16 @@
         grid-template-rows: auto;
         align-self: center;
         overflow:hidden;        
+    }
+
+    .reserves{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        place-items: center;
+        overflow:hidden;
+        gap: 10px;
+        
     }
 }
 
@@ -95,11 +140,30 @@
         overflow:hidden;
     }
 
+    .reserves{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        place-items: center;
+        overflow:hidden;
+        gap: 10px;
+
+        
+    }
+
     .label {
         color: #fff;
         font-size: 50px;
         margin-top: 100px;
         font-weight: 600;  
         margin-bottom: 10px; 
+    }
+
+    .link {
+
+        width: 35%;
+        font-size: 30px;
+        padding: 5px;
+        
     }
 }

@@ -93,6 +93,13 @@ export async function getUserReservations(userID) {
 
   }
 
+export async function getAllUsersReservations() {
+    const reservationsRef = collection(db, reservesCollection);
+    const reservations = await getDocs(reservationsRef);
+    const reserves = reservations.docs.map(doc => doc.data());
+    return reserves;
+  }
+
 
 
 

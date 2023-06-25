@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.label {
+    color: #fff;
+    font-size: 30px;
+    margin-top: 100px;
+    font-weight: 600;  
+    margin-bottom: 20px; 
+}
+
+
+.reserves{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: auto;
+    place-items: center;
+    overflow:hidden;
+    margin: 20px;
+    gap: 10px
+}
+
+@media screen and (min-width: 767px) {
+
+    .reserves{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        align-self: center;
+        
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .reserves{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        align-self: center;
+        
+    }
+}

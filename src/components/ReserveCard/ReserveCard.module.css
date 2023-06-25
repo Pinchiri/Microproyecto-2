@@ -3,15 +3,28 @@
     color: white;
     display: flex;
     flex-direction: column;
-    margin: 10px;
+
     padding: 10px;
     border-radius: 10px;
     width: 70%;
     height: auto;
-    overflow-wrap: break-word;
-
+    margin: 10px;
 
 }
+
+.rightContainer{
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: stretch;
+    width: 100%;
+    height: 90%;
+    font-size: 15px;
+
+}
+
 
 .titleContainer{
     margin: auto;
@@ -40,7 +53,7 @@
 
 
 .cardContainer:hover{
-    transform: scale(1.05);
+    transform: scale(1.03);
     background-color:#3d3d3d;
 }
 
@@ -53,25 +66,25 @@
 
 @media screen and (min-width: 767px) {
     .cardContainer{
-        margin: 10px;
-        margin-left: 17px;
-        padding: 10px;
+        margin: 20px;
+        padding-bottom: 20px;
         border-radius: 10px;
-        width: 125px;
-        height: auto;
-        overflow:hidden;    
+        width: 80%;
+        height: 85%;
+        overflow:hidden; 
+
     
     }
 }
 
 @media screen and (min-width: 1024px){
     .cardContainer{
-        margin: 10px;
-        margin-left: 40px;
-        padding: 10px;
+        margin: 20px;
+   
+
         border-radius: 10px;
-        width: 225px;
-        height: auto;
+        width: 80%;
+        height: 90%;
         overflow:hidden;    
     
     }

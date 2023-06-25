@@ -4,9 +4,10 @@ import { useUser } from '../../contexts/UserContext';
 import { getUserMovies } from '../../firebase/users-service';
 import { fetchInfo } from '../../utils/movie-api';
 import { MovieCard } from '../../components/MovieCard/MovieCard';
-import { render } from 'react-dom';
 import { getUserReservations } from '../../firebase/reserveManagement';
 import ReserveCard from '../../components/ReserveCard/ReserveCard';
+import { useNavigate } from 'react-router-dom';
+import { adminURL } from '../../constants/urls';
 
 export function Profile() {
   const { user, isLoadingUser } = useUser();
@@ -14,7 +15,7 @@ export function Profile() {
   const [isLoading, setLoading] = useState(false);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const [reservations, setReservations] = useState([]);
-
+  const navigate = useNavigate();
   const [hasLoaded, setHasLoaded] = useState(false);
 
   const profile = "true";
@@ -46,6 +47,10 @@ export function Profile() {
     setHasLoaded(true);
   }
 
+  const handleAdmin = () => {
+    navigate(adminURL);
+  }
+
   const getReservations = async () => {
     const reserves = await getUserReservations(user.id);
     
@@ -63,6 +68,19 @@ export function Profile() {
     <div className={styles.container}>
       <div className={styles.profilePic}></div>
       <div className={styles.userName}>{displayName(user.name)}</div>
+      <div className={styles.hidden}>
+        {user.role == "admin" ? (
+          <button
+          type="button"
+          className={`${styles.link} ${styles.hiddenButton}`}
+          onClick={handleAdmin}
+          >
+          <span>GO TO ADMIN PAGE</span>
+          </button> 
+        ) : (
+          <></>
+      )}     
+      </div>
       <div className={styles.label}>FAVORITE MOVIES</div>
       <div className={styles.movies}>
             {isLoading && (

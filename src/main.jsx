@@ -11,6 +11,8 @@ import { PrivateRoute } from './components/PrivateRoute/PrivateRoute.jsx'
 import { MovieDetails } from './pages/MovieDetails/MovieDetails'
 import { Reserve } from './pages/Reserve/Reserve'
 import { Profile } from './pages/Profile/Profile'
+import AdminRoute from './components/AdminRoute/AdminRoute'
+import AdminPage from './pages/AdminPage/AdminPage'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -31,9 +33,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           </PrivateRoute>
         } />
         <Route path = {adminURL} element = {
-          <PrivateRoute>
-            <h1>ADMIN</h1>
-          </PrivateRoute>
+          <AdminRoute>
+            <AdminPage />
+          </AdminRoute>
           
         } />
         <Route path = '/movies/:movieId' element = {<MovieDetails />} />
