@@ -59,6 +59,7 @@ export function HomePage() {
               <h1>CARGANDO...</h1>
             )}
             {!isLoading && newMovies.map((movie)=>{
+              movie["profile"] = false;
               return(          
                 <MovieCard movie={movie} key={movie.id}/>
               )
@@ -75,6 +76,7 @@ export function HomePage() {
               <h1>CARGANDO...</h1>
             )}
             {!isLoading && searchResult.map((movie)=>{
+              movie["profile"] = false;
               return(          
                 <MovieCard movie={movie} key={movie.id}/>
               )
