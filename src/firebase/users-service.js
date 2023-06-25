@@ -29,21 +29,33 @@ import {
     const oldFavs = await getUserMovies(userId);
 
     if (oldFavs.includes(newFavs)) {
-      return console.error("USER ALREADY HAS THAT MOVIE AS FAVORITE");
+      console.error("USER ALREADY HAS THAT MOVIE AS FAVORITE");
+      return window.alert("You already have that movie in favorites");
     } else {
       if (oldFavs.length < 1) {
         allFavs.push(newFavs);
+        try {
+          await updateDoc(userRef, { "favorites": allFavs });
+          
+          console.log('FAVORITES UPDATED SUCCESFULLY');
+          window.alert("The movie has been added to your favorites list!");
+          
+        } catch (error) {
+          console.error('ERROR UPDATING FAVORITES:', error);
+          return;
+  
+        }
       } else {
-        
         for (let index = 0; index < oldFavs.length; index++) {
           const element = oldFavs[index];
           allFavs.push(element); 
         }
-        allFavs.push(newFavs)
+        allFavs.push(newFavs);
 
         try {
           await updateDoc(userRef, { "favorites": allFavs });
           console.log('FAVORITES UPDATED SUCCESFULLY');
+          window.alert("The movie has been added to your favorites list!");
         } catch (error) {
           console.error('ERROR UPDATING FAVORITES:', error);
         }

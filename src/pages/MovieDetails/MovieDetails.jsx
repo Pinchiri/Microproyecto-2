@@ -42,6 +42,7 @@ export function MovieDetails() {
     
       const handleFavorite = async (event) => {
         event.preventDefault();
+
         await updateUserFavorites(user.id, movieId);
  
       };
